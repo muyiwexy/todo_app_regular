@@ -18,7 +18,7 @@ import 'features/todo_app/presentation/bloc/todo_app_bloc.dart';
 final serviceLocator = GetIt.asNewInstance();
 
 Future<void> init() async {
-  //! Features - Number Trivia
+  //! Features - To do
   // Bloc
   serviceLocator.registerFactory(
     () => TodoAppBloc(
