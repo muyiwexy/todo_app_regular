@@ -14,14 +14,14 @@ abstract class TodoAppLocalDataSource {
   Future<void>? cacheTodoList(GetTodoModel todoToCache);
 }
 
-const CACHED_NUMBER_TRIVIA = "CACHED_NUMBER_TRIVIA";
+const CACHED_TODO_APP = "CACHED_TODO_APP";
 
 class TodoAppLocalDataSourceImpl implements TodoAppLocalDataSource {
   SharedPreferences sharedPreferences;
   TodoAppLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<GetTodoModel>? getLastTodoList() {
-    final jsonString = sharedPreferences.getString(CACHED_NUMBER_TRIVIA);
+    final jsonString = sharedPreferences.getString(CACHED_TODO_APP);
     if (jsonString != null) {
       return Future.value(GetTodoModel.fromJson(json.decode(jsonString)));
     } else {
@@ -32,7 +32,7 @@ class TodoAppLocalDataSourceImpl implements TodoAppLocalDataSource {
   @override
   Future<void>? cacheTodoList(GetTodoModel todoToCache) {
     return sharedPreferences.setString(
-      CACHED_NUMBER_TRIVIA,
+      CACHED_TODO_APP,
       json.encode(todoToCache.toJson()),
     );
   }
